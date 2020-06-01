@@ -36,7 +36,16 @@ class CustomerAdd extends React.Component {
         this.addCustomer()
             .then((response) => {
                 console.log(response.data);
+                this.props.stateRefresh();
             })
+        this.setState({
+            file: null,
+            userName: '',
+            birthday: '',
+            gender: '',
+            job: '',
+            fileName: ''
+        })
     }
 
     handleFileChange = (e) => {
@@ -54,7 +63,7 @@ class CustomerAdd extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.hadleFromSubmit}>
+            <form onSubmit={this.handleFormSubmit}>
                 <h1>Add Customer</h1>
                 PROFILE IMAGE: <input type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange}/><br/>
                 NAME: <input type="text" name="userName" value={this.state.userName} onChange={this.handleValueChange}/><br/>
